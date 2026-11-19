@@ -1,0 +1,142 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #111111;
+  --ink: #111111;
+  --pink: #ff2d87; /* 핫핑크 */
+  --pink-deep: #e01572;
+  --blush: #ffe1ee; /* 로고 연분홍 */
+  --blush-2: #fff3f8;
+  --crown: #ffc93c; /* 왕관 골드 */
+  --muted: #555555;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 72px;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", "Apple SD Gothic Neo",
+    "Malgun Gothic", "Pretendard", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+.font-heavy {
+  font-family: var(--font-heavy), "Black Han Sans", "Malgun Gothic", sans-serif;
+  letter-spacing: -0.01em;
+}
+.font-pop {
+  font-family: var(--font-pop), "Do Hyeon", "Malgun Gothic", sans-serif;
+}
+
+/* 네오브루탈 박스 */
+.brut {
+  border: 3px solid var(--ink);
+  box-shadow: 5px 5px 0 var(--ink);
+}
+.brut-sm {
+  border: 2.5px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+.brut-pink {
+  border: 3px solid var(--ink);
+  box-shadow: 5px 5px 0 var(--pink);
+}
+.press {
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.press:hover {
+  transform: translate(-2px, -2px);
+}
+.press:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 var(--ink);
+}
+
+.dots {
+  background-image: radial-gradient(rgba(17, 17, 17, 0.14) 1.2px, transparent 1.2px);
+  background-size: 14px 14px;
+}
+
+/* 흐르는 띠 */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 22s linear infinite;
+}
+.marquee.reverse {
+  animation-direction: reverse;
+}
+
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(-6deg);
+  }
+  50% {
+    transform: rotate(6deg);
+  }
+}
+.wiggle {
+  animation: wiggle 1.6s ease-in-out infinite;
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.85) rotate(-2deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.anim-pop {
+  animation: pop-in 0.22s cubic-bezier(0.2, 1.4, 0.4, 1);
+}
+.anim-fade {
+  animation: fade-in 0.18s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .marquee,
+  .wiggle,
+  .anim-pop,
+  .anim-fade {
+    animation: none;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-ink: var(--ink);
+  --color-pink: var(--pink);
+  --color-blush: var(--blush);
+  --color-crown: var(--crown);
+  --color-muted: var(--muted);
+}
